@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Finance Tracker - Tests</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <style>
+        .test-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .test-section {
+            background: var(--card);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .test-results {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: var(--bg);
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .test-pass {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        .test-fail {
+            color: var(--danger);
+            font-weight: bold;
+        }
+        
+        .test-input {
+            width: 100%;
+            padding: 0.5rem;
+            margin: 0.5rem 0;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+        
+        .test-button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 0.5rem 0;
+        }
+        
+        .test-button:hover {
+            background: var(--primary-dark);
+        }
+        
+        .regex-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .regex-example {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+        }
+        
+        .regex-pattern {
+            font-family: 'Monaco', 'Menlo', monospace;
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 3px;
+            display: inline-block;
+            margin: 0.25rem 0;
+        }
+        
+        .test-data {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            margin: 1rem 0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.875rem;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>Student Finance Tracker - Test Suite</h1>
+        
+        <!-- Regex Validation Tests -->
+        <section class="test-section">
+            <h2>Regex Validation Tests</h2>
+            <p>Test the regex patterns used for form validation</p>
+            
+            <div class="test-results" id="regexTestResults">
+                <h3>Test Results:</h3>
+                <div id="regexResults"></div>
+            </div>
+            
+            <button class="test-button" onclick="runRegexTests()">Run Regex Tests</button>
+        </section>
+        
+        <!-- Interactive Regex Tester -->
+        <section class="test-section">
+            <h2>Interactive Regex Tester</h2>
+            <p>Test your own regex patterns against sample data</p>
+            
+            <div>
+                <label for="testPattern">Regex Pattern:</label>
+                <input type="text" id="testPattern" class="test-input" placeholder="Enter regex pattern (e.g., \\.\\d{2}\\b)">
+            </div>
+            
+            <div>
+                <label for="testText">Test Text:</label>
+                <input type="text" id="testText" class="test-input" placeholder="Enter text to test">
+            </div>
+            
+            <button class="test-button" onclick="testCustomRegex()">Test Pattern</button>
+            
+            <div class="test-results" id="customTestResults">
+                <div id="customResults"></div>
+            </div>
+        </section>
+        
+        <!-- Regex Examples -->
+        <section class="test-section">
+            <h2>Advanced Regex Examples</h2>
+            <p>Examples of advanced regex patterns used in the application</p>
+            
+            <div class="regex-examples">
+                <div class="regex-example">
+                    <h4>Back-reference Pattern</h4>
+                    <div class="regex-pattern">\b(\w+)\s+\1\b</div>
+                    <p>Finds duplicate words in descriptions</p>
+                    <p><strong>Example:</strong> "coffee coffee" → Match</p>
+                    <p><strong>Example:</strong> "coffee tea" → No match</p>
+                </div>
+                
+                <div class="regex-example">
+                    <h4>Cents Detection</h4>
+                    <div class="regex-pattern">\.\d{2}\b</div>
+                    <p>Finds amounts with cents</p>
+                    <p><strong>Example:</strong> "12.50" → Match</p>
+                    <p><strong>Example:</strong> "12.5" → No match</p>
+                </div>
+                
+                <div class="regex-example">
+                    <h4>Beverage Keywords</h4>
+                    <div class="regex-pattern">(coffee|tea|juice|soda)</div>
+                    <p>Finds beverage-related expenses</p>
+                    <p><strong>Example:</strong> "coffee with friends" → Match</p>
+                    <p><strong>Example:</strong> "lunch at cafe" → No match</p>
+                </div>
+                
+                <div class="regex-example">
+                    <h4>Date Validation</h4>
+                    <div class="regex-pattern">^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$</div>
+                    <p>Validates YYYY-MM-DD format</p>
+                    <p><strong>Example:</strong> "2025-10-15" → Match</p>
+                    <p><strong>Example:</strong> "2025-13-01" → No match</p>
+                </div>
+                
+                <div class="regex-example">
+                    <h4>Amount Validation</h4>
+                    <div class="regex-pattern">^(0|[1-9]\d*)(\.\d{1,2})?$</div>
+                    <p>Validates currency amounts</p>
+                    <p><strong>Example:</strong> "12.50" → Match</p>
+                    <p><strong>Example:</strong> "012.50" → No match</p>
+                </div>
+                
+                <div class="regex-example">
+                    <h4>Category Validation</h4>
+                    <div class="regex-pattern">^[A-Za-z]+(?:[ -][A-Za-z]+)*$</div>
+                    <p>Validates category names</p>
+                    <p><strong>Example:</strong> "Food & Drink" → Match</p>
+                    <p><strong>Example:</strong> "Food123" → No match</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Sample Data -->
+        <section class="test-section">
+            <h2>Sample Test Data</h2>
+            <p>Use this data to test your regex patterns</p>
+            
+            <div class="test-data">
+                <h4>Sample Descriptions:</h4>
+                <div>Lunch at cafeteria</div>
+                <div>Coffee with friends</div>
+                <div>Chemistry textbook</div>
+                <div>Bus pass monthly</div>
+                <div>Movie tickets</div>
+                <div>Library fees</div>
+                <div>Tea at campus cafe</div>
+                <div>Dinner at restaurant</div>
+                <div>Notebook and pens</div>
+                <div>Gym membership</div>
+                <div>Pizza delivery</div>
+                <div>Math textbook</div>
+                <div>Uber ride to campus</div>
+                <div>Concert tickets</div>
+                <div>Student activity fee</div>
+            </div>
+            
+            <div class="test-data">
+                <h4>Sample Amounts:</h4>
+                <div>12.50</div>
+                <div>89.99</div>
+                <div>45.00</div>
+                <div>8.75</div>
+                <div>25.30</div>
+                <div>15.00</div>
+                <div>4.50</div>
+                <div>18.00</div>
+                <div>12.99</div>
+                <div>35.00</div>
+                <div>22.50</div>
+                <div>125.00</div>
+                <div>8.25</div>
+                <div>45.00</div>
+                <div>50.00</div>
+            </div>
+            
+            <div class="test-data">
+                <h4>Sample Categories:</h4>
+                <div>Food</div>
+                <div>Books</div>
+                <div>Transport</div>
+                <div>Entertainment</div>
+                <div>Fees</div>
+                <div>Other</div>
+                <div>Food & Drink</div>
+                <div>School Supplies</div>
+                <div>Health & Fitness</div>
+            </div>
+        </section>
+        
+        <!-- Functionality Tests -->
+        <section class="test-section">
+            <h2>Functionality Tests</h2>
+            <p>Test core application functionality</p>
+            
+            <div class="test-results" id="functionTestResults">
+                <h3>Test Results:</h3>
+                <div id="functionResults"></div>
+            </div>
+            
+            <button class="test-button" onclick="runFunctionTests()">Run Function Tests</button>
+        </section>
+    </div>
+    
+    <script type="module">
+        import { validators, validateRecord } from './scripts/validators.js';
+        import { compileRegex, highlightText } from './scripts/search.js';
+        import { generateId, formatCurrency } from './scripts/state.js';
+        
+        // Make functions globally available
+        window.runRegexTests = runRegexTests;
+        window.testCustomRegex = testCustomRegex;
+        window.runFunctionTests = runFunctionTests;
+        
+        function runRegexTests() {
+            const results = document.getElementById('regexResults');
+            results.innerHTML = '';
+            
+            const tests = [
+                // Description tests
+                { name: 'Description - Valid', validator: 'description', value: 'Lunch at cafeteria', expected: true },
+                { name: 'Description - Leading space', validator: 'description', value: ' Lunch', expected: false },
+                { name: 'Description - Trailing space', validator: 'description', value: 'Lunch ', expected: false },
+                { name: 'Description - Double space', validator: 'description', value: 'Lunch  at', expected: false },
+                { name: 'Description - Duplicate words', validator: 'description', value: 'coffee coffee', expected: false },
+                { name: 'Description - Too short', validator: 'description', value: 'A', expected: false },
+                
+                // Amount tests
+                { name: 'Amount - Valid', validator: 'amount', value: '12.50', expected: true },
+                { name: 'Amount - Valid integer', validator: 'amount', value: '100', expected: true },
+                { name: 'Amount - Leading zero', validator: 'amount', value: '012.50', expected: false },
+                { name: 'Amount - Invalid format', validator: 'amount', value: '12.5', expected: true },
+                { name: 'Amount - Negative', validator: 'amount', value: '-12.50', expected: false },
+                { name: 'Amount - Too many decimals', validator: 'amount', value: '12.555', expected: false },
+                
+                // Date tests
+                { name: 'Date - Valid', validator: 'date', value: '2025-10-15', expected: true },
+                { name: 'Date - Invalid month', validator: 'date', value: '2025-13-01', expected: false },
+                { name: 'Date - Invalid day', validator: 'date', value: '2025-10-32', expected: false },
+                { name: 'Date - Wrong format', validator: 'date', value: '10/15/2025', expected: false },
+                { name: 'Date - Future date', validator: 'date', value: '2026-01-01', expected: false },
+                
+                // Category tests
+                { name: 'Category - Valid', validator: 'category', value: 'Food', expected: true },
+                { name: 'Category - With space', validator: 'category', value: 'Food & Drink', expected: true },
+                { name: 'Category - With hyphen', validator: 'category', value: 'School-Supplies', expected: true },
+                { name: 'Category - With numbers', validator: 'category', value: 'Food123', expected: false },
+                { name: 'Category - Too short', validator: 'category', value: 'A', expected: false },
+                { name: 'Category - Too long', validator: 'category', value: 'A'.repeat(51), expected: false }
+            ];
+            
+            let passed = 0;
+            let total = tests.length;
+            
+            tests.forEach(test => {
+                const result = validators[test.validator].test(test.value);
+                const passed = result === test.expected;
+                
+                if (passed) passed++;
+                
+                const testDiv = document.createElement('div');
+                testDiv.innerHTML = `
+                    <div class="${passed ? 'test-pass' : 'test-fail'}">
+                        ${passed ? '✓' : '✗'} ${test.name}: "${test.value}" 
+                        ${passed ? 'PASSED' : 'FAILED'} (Expected: ${test.expected}, Got: ${result})
+                    </div>
+                `;
+                results.appendChild(testDiv);
+            });
+            
+            const summary = document.createElement('div');
+            summary.innerHTML = `<h4>Summary: ${passed}/${total} tests passed</h4>`;
+            results.appendChild(summary);
+        }
+        
+        function testCustomRegex() {
+            const pattern = document.getElementById('testPattern').value;
+            const text = document.getElementById('testText').value;
+            const results = document.getElementById('customResults');
+            
+            if (!pattern || !text) {
+                results.innerHTML = '<div class="test-fail">Please enter both pattern and text</div>';
+                return;
+            }
+            
+            try {
+                const regex = compileRegex(pattern);
+                if (!regex) {
+                    results.innerHTML = '<div class="test-fail">Invalid regex pattern</div>';
+                    return;
+                }
+                
+                const matches = text.match(regex);
+                const highlighted = highlightText(text, regex);
+                
+                results.innerHTML = `
+                    <div class="test-pass">Pattern: ${pattern}</div>
+                    <div>Text: ${text}</div>
+                    <div>Matches: ${matches ? matches.join(', ') : 'None'}</div>
+                    <div>Highlighted: ${highlighted}</div>
+                `;
+            } catch (error) {
+                results.innerHTML = `<div class="test-fail">Error: ${error.message}</div>`;
+            }
+        }
+        
+        function runFunctionTests() {
+            const results = document.getElementById('functionResults');
+            results.innerHTML = '';
+            
+            const tests = [
+                { name: 'ID Generation', test: () => {
+                    const id1 = generateId();
+                    const id2 = generateId();
+                    return id1 !== id2 && id1.startsWith('txn_');
+                }},
+                { name: 'Currency Formatting', test: () => {
+                    return formatCurrency(12.5) === '$12.50' && formatCurrency(100) === '$100.00';
+                }},
+                { name: 'Record Validation', test: () => {
+                    const validRecord = {
+                        description: 'Test transaction',
+                        amount: '12.50',
+                        category: 'Food',
+                        date: '2025-10-15'
+                    };
+                    const validation = validateRecord(validRecord);
+                    return validation.isValid;
+                }},
+                { name: 'Regex Compilation', test: () => {
+                    const regex = compileRegex('test');
+                    return regex instanceof RegExp;
+                }},
+                { name: 'Text Highlighting', test: () => {
+                    const regex = compileRegex('test');
+                    const highlighted = highlightText('This is a test', regex);
+                    return highlighted.includes('<mark>test</mark>');
+                }}
+            ];
+            
+            let passed = 0;
+            let total = tests.length;
+            
+            tests.forEach(test => {
+                try {
+                    const result = test.test();
+                    if (result) passed++;
+                    
+                    const testDiv = document.createElement('div');
+                    testDiv.innerHTML = `
+                        <div class="${result ? 'test-pass' : 'test-fail'}">
+                            ${result ? '✓' : '✗'} ${test.name}: ${result ? 'PASSED' : 'FAILED'}
+                        </div>
+                    `;
+                    results.appendChild(testDiv);
+                } catch (error) {
+                    const testDiv = document.createElement('div');
+                    testDiv.innerHTML = `
+                        <div class="test-fail">
+                            ✗ ${test.name}: ERROR - ${error.message}
+                        </div>
+                    `;
+                    results.appendChild(testDiv);
+                }
+            });
+            
+            const summary = document.createElement('div');
+            summary.innerHTML = `<h4>Summary: ${passed}/${total} tests passed</h4>`;
+            results.appendChild(summary);
+        }
+        
+        // Run tests on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            runRegexTests();
+            runFunctionTests();
+        });
+    </script>
+</body>
+</html>

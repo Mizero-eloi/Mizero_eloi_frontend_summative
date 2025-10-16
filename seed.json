@@ -1,0 +1,137 @@
+[
+  {
+    "id": "txn_001",
+    "description": "Lunch at cafeteria",
+    "amount": "12.50",
+    "category": "Food",
+    "date": "2025-10-10",
+    "createdAt": "2025-10-10T12:30:00.000Z",
+    "updatedAt": "2025-10-10T12:30:00.000Z"
+  },
+  {
+    "id": "txn_002",
+    "description": "Chemistry textbook",
+    "amount": "89.99",
+    "category": "Books",
+    "date": "2025-10-08",
+    "createdAt": "2025-10-08T14:15:00.000Z",
+    "updatedAt": "2025-10-08T14:15:00.000Z"
+  },
+  {
+    "id": "txn_003",
+    "description": "Bus pass monthly",
+    "amount": "45.00",
+    "category": "Transport",
+    "date": "2025-10-05",
+    "createdAt": "2025-10-05T09:00:00.000Z",
+    "updatedAt": "2025-10-05T09:00:00.000Z"
+  },
+  {
+    "id": "txn_004",
+    "description": "Coffee with friends",
+    "amount": "8.75",
+    "category": "Entertainment",
+    "date": "2025-10-12",
+    "createdAt": "2025-10-12T16:45:00.000Z",
+    "updatedAt": "2025-10-12T16:45:00.000Z"
+  },
+  {
+    "id": "txn_005",
+    "description": "Dinner at restaurant",
+    "amount": "25.30",
+    "category": "Food",
+    "date": "2025-10-14",
+    "createdAt": "2025-10-14T19:30:00.000Z",
+    "updatedAt": "2025-10-14T19:30:00.000Z"
+  },
+  {
+    "id": "txn_006",
+    "description": "Library fees",
+    "amount": "15.00",
+    "category": "Fees",
+    "date": "2025-10-09",
+    "createdAt": "2025-10-09T11:20:00.000Z",
+    "updatedAt": "2025-10-09T11:20:00.000Z"
+  },
+  {
+    "id": "txn_007",
+    "description": "Tea at campus cafe",
+    "amount": "4.50",
+    "category": "Food",
+    "date": "2025-10-13",
+    "createdAt": "2025-10-13T10:15:00.000Z",
+    "updatedAt": "2025-10-13T10:15:00.000Z"
+  },
+  {
+    "id": "txn_008",
+    "description": "Movie tickets",
+    "amount": "18.00",
+    "category": "Entertainment",
+    "date": "2025-10-11",
+    "createdAt": "2025-10-11T20:00:00.000Z",
+    "updatedAt": "2025-10-11T20:00:00.000Z"
+  },
+  {
+    "id": "txn_009",
+    "description": "Notebook and pens",
+    "amount": "12.99",
+    "category": "Books",
+    "date": "2025-10-07",
+    "createdAt": "2025-10-07T13:45:00.000Z",
+    "updatedAt": "2025-10-07T13:45:00.000Z"
+  },
+  {
+    "id": "txn_010",
+    "description": "Gym membership",
+    "amount": "35.00",
+    "category": "Other",
+    "date": "2025-10-06",
+    "createdAt": "2025-10-06T08:30:00.000Z",
+    "updatedAt": "2025-10-06T08:30:00.000Z"
+  },
+  {
+    "id": "txn_011",
+    "description": "Pizza delivery",
+    "amount": "22.50",
+    "category": "Food",
+    "date": "2025-10-15",
+    "createdAt": "2025-10-15T18:30:00.000Z",
+    "updatedAt": "2025-10-15T18:30:00.000Z"
+  },
+  {
+    "id": "txn_012",
+    "description": "Math textbook",
+    "amount": "125.00",
+    "category": "Books",
+    "date": "2025-10-03",
+    "createdAt": "2025-10-03T15:20:00.000Z",
+    "updatedAt": "2025-10-03T15:20:00.000Z"
+  },
+  {
+    "id": "txn_013",
+    "description": "Uber ride to campus",
+    "amount": "8.25",
+    "category": "Transport",
+    "date": "2025-10-16",
+    "createdAt": "2025-10-16T07:45:00.000Z",
+    "updatedAt": "2025-10-16T07:45:00.000Z"
+  },
+  {
+    "id": "txn_014",
+    "description": "Concert tickets",
+    "amount": "45.00",
+    "category": "Entertainment",
+    "date": "2025-10-04",
+    "createdAt": "2025-10-04T12:00:00.000Z",
+    "updatedAt": "2025-10-04T12:00:00.000Z"
+  },
+  {
+    "id": "txn_015",
+    "description": "Student activity fee",
+    "amount": "50.00",
+    "category": "Fees",
+    "date": "2025-10-01",
+    "createdAt": "2025-10-01T09:00:00.000Z",
+    "updatedAt": "2025-10-01T09:00:00.000Z"
+  }
+]
